@@ -1,14 +1,16 @@
 package com.example.tapti.firstapplication.com.example.tapti.firstapplication.materialDesign;
 
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.TabLayout;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import com.example.tapti.firstapplication.R;
 
 import java.util.ArrayList;
@@ -35,11 +37,12 @@ public class MaterialDesignActivity extends AppCompatActivity {
 //        tabs.addTab(tabs.newTab().setText("Third tab"));
     }
     private void setupViewPager(ViewPager viewPager) {
-        RecyclerView.Adapter adapter = new RecyclerView.Adapter(getSupportFragmentManager());
+        Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new ListContentFragment(), "List");
         adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new CardContentFragment(), "Card");
         viewPager.setAdapter(adapter);
+    }
 
         class Adapter extends FragmentPagerAdapter {
             private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -69,5 +72,20 @@ public class MaterialDesignActivity extends AppCompatActivity {
                 return mFragmentTitleList.get(position);
             }
         }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return  true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id==R.id.action_settings)
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 }
