@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Symptom>> call1, Response<List<Symptom>> response) {
               Log.d("response.body()",response.body().toString());
-                DataAdapter dataAdapter = new DataAdapter(response.body());
+                DataAdapter dataAdapter = new DataAdapter(response.body(),MainActivity.this);
                 recyclerView.setAdapter(dataAdapter);
             }
 
